@@ -2,6 +2,7 @@ package leticia.edu.login_backend.service;
 
 import leticia.edu.login_backend.entity.User;
 import leticia.edu.login_backend.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,5 +27,12 @@ public class UserService {
         userRepository.save(user);
         System.out.println("Usuario salvo " + user.getId());
         return user;
+    }
+
+    public User create(User usuario) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String novaSenha = encoder.encode(usuario.getPassword());
+        usuario.setPassword(novaSenha);
+        return userRepository.save(usuario);
     }
 }
