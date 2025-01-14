@@ -29,10 +29,18 @@ public class UserService {
         return user;
     }
 
-    public User create(User usuario) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String novaSenha = encoder.encode(usuario.getPassword());
-        usuario.setPassword(novaSenha);
-        return userRepository.save(usuario);
+    public User create(User usuario) throws Exception {
+        try{
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            String novaSenha = encoder.encode(usuario.getPassword());
+            usuario.setPassword(novaSenha);
+            return userRepository.save(usuario);
+
+        }catch (Exception ex){
+            throw new Exception("Este usuario nao pode ser criado");
+        }
+
     }
+
+
 }

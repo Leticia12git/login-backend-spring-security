@@ -49,7 +49,7 @@ public class User {
         this.id = id;
     }
 
-    public UserRole getUserRole() {
+    public UserRole getUserRole(UserRole admin) {
         return userRole;
     }
 

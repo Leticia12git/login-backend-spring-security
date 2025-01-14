@@ -31,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> addNewUser(@RequestBody User user) {
+    public ResponseEntity<User> addNewUser(@RequestBody User user) throws Exception {
         return ResponseEntity.status(201).body(userService.create(user));
     }
 }
